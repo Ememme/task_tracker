@@ -1,8 +1,12 @@
 
-<%= form_with scope: :article, local: true do |form| %>
+<%= form_with scope: :task, local: true do |form| %>
   <p>
     <!-- <%= form.label :text %><br> -->
-    <%= form.text_area :text, placeholder: "Co teraz robisz?"%>
+    <%= form.text_field :subject, placeholder: "Co teraz robisz?"%>
+    <button name="button" type="button">
+      <strong>Add task!</strong>
+    </button>
+
   </p>
 
 
