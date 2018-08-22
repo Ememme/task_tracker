@@ -14,8 +14,8 @@ RSpec.describe 'tasks/index.html.erb', type: :view do
 
   it 'renders form' do
     assign(:task, Task.new)
-    assign(:tasks, [Task.new(subject: 'Pranie'),
-                    Task.new(subject: 'Arghh!')])
+    assign(:tasks, [Task.create(subject: 'Pranie'),
+                    Task.create(subject: 'Arghh!')])
 
     render
 

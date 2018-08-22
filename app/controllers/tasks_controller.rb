@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: true
-
 # Handle tasks
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = Task.all
+    @tasks = Task.all.order(created_at: :desc)
   end
 
   def search
@@ -20,8 +18,12 @@ class TasksController < ApplicationController
       redirect_to tasks_path
     else
       @tasks = Task.all
-      render action: :index
+      render action: :index, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @task = Task.find(params[:id])
   end
 
   private

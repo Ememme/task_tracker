@@ -26,6 +26,22 @@ RSpec.describe TasksController, type: :controller do
       end.to change(Task, :count).by(1)
       expect(response).to have_http_status(:redirect)
     end
+
+    it 'renders index' do
+      expect do
+        post :create, params: { task: { subject: '' } }
+      end.to_not change(Task, :count)
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
+
+  describe 'GET #edit' do
+    it 'edit task' do
+      task = Task.create(subject: 'sth')
+      get :edit, params: { id: task }
+      expect(response).to have_http_status(:success)
+      expect(assigns(:task)).to eq(task)
+    end
   end
 
   describe 'GET #search' do
