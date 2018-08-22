@@ -1,0 +1,22 @@
+<div class="grid-x">
+  <div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
+    <%= form_for @task do |f| %>
+      <%= f.text_field :subject, placehoder: t('task.new.placeholder'), required: true %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
+<div class="grid-x">
+  <div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
+    <table class="hover">
+      <% @tasks.each do |task| %>
+        <tr>
+          <td>
+            <%= task.subject %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
