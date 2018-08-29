@@ -25,29 +25,59 @@ $(function(){
     var input = $(event.target)
     var query = input.val()
 
-    // input = "/tasks/search?query="+query
-    input = new Request("/tasks/search?query="+query);
+    // ==================================================
+    // ================  axios version =================
+    // ==================================================
 
-    init = {
-      method: 'GET'
-    }
-
-    fetch(input)
-    .then(function(response) {
-      return response.json();
+    axios.get('/tasks/search', {
+      params: {
+        query: query
+      }
     })
-    .then(function(suggestions) {
+    .then(function (suggestions) {
       var $suggestions = $('#suggestions')
       var $suggestions_table = $suggestions.find('table tbody')
 
       $suggestions_table.empty()
 
-      suggestions.forEach(function(suggestion) {
+      suggestions.data.forEach(function(suggestion) {
         $suggestions_table.append('<tr><td>' + suggestion + '</td></tr>')
       });
 
       $suggestions.show()
-    });
+    })
+    .catch(function (error) {
+      console.log(error);
+      $('#suggestions').hide()
+    })
+
+    // ==================================================
+    // ================  fetch version =================
+    // ==================================================
+
+    // input = "/tasks/search?query="+query
+    // input = new Request("/tasks/search?query="+query);
+
+    // init = {
+    //   method: 'GET'
+    // }
+
+    // fetch(input)
+    // .then(function(response) {
+    //   return response.json();
+    // })
+    // .then(function(suggestions) {
+    //   var $suggestions = $('#suggestions')
+    //   var $suggestions_table = $suggestions.find('table tbody')
+
+    //   $suggestions_table.empty()
+
+    //   suggestions.forEach(function(suggestion) {
+    //     $suggestions_table.append('<tr><td>' + suggestion + '</td></tr>')
+    //   });
+
+    //   $suggestions.show()
+    // });
 
     // ==================================================
     // ================  jQuery version =================
