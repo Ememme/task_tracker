@@ -56,4 +56,23 @@ RSpec.describe TasksController, type: :controller do
       expect(JSON.parse(response.body)).to match_array(%w[Pranie Prasowanie])
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'deletes task from list and redirects' do
+      task = Task.create(subject: 'Task to delete')
+      expect do
+      delete :destroy, params: { id: task }
+      end.to change(Task, :count).by(-1)
+      expect(response).to be_succesful
+    end
+
+    it 'deletes task from list and creates JSON response' do
+      task = Task.create(subject: 'Task to delete')
+      expect do
+      delete :destroy, params: { id: task }
+      end.to change(Task, :count).by(-1)
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+
 end
