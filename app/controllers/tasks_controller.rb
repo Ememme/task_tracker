@@ -2,6 +2,7 @@
 
 # Handle tasks
 class TasksController < ApplicationController
+  before_action :authenticate_user
   before_action :find_task, only: %i[edit destroy]
 
   def index
@@ -37,6 +38,10 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+
   end
 
   private

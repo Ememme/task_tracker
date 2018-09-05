@@ -1,0 +1,17 @@
+<div class="grid-x">
+  <div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
+    <h1>Sign up</h1>
+  </div>
+  <div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
+    <%= form_for @user, url: sign_up_path do |f| %>
+      <%= f.email_field :email,
+        required: true,
+        autocomplete: 'email' %>
+       <%= f.password_field :password,
+        required: true %>
+       <%= f.password_field :password_conformation,
+        required: true %>
+       <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

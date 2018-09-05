@@ -1,0 +1,19 @@
+<div class="grid-x">
+<div class="cell small-12 medium-6 medium-offset-3 large-8 large-offset-2">
+  <table class="hover">
+        <td>
+          <%= @task.subject %>
+        </td>
+        <td>
+          <%= @task.created_at %>
+        </td>
+        <td>
+          <%= link_to "Delete", @task, method: :delete, data: { confirm: "Are you sure ?" }, class: 'js-delete-link' %>
+          |
+          <%= link_to "Edit", edit_task_path %>
+
+        </td>
+      </tr>
+  </table>
+</div>
+</div>

@@ -13,3 +13,10 @@ require 'rails_helper'
 RSpec.describe TaskHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
